@@ -3,10 +3,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Products() {
     const [products, setProducts] = useState([]);
     const { data: session } = useSession();
+    let imageUrl: any = session?.user?.image;
 
     useEffect(() => {
         axios.get("/api/products").then((response) => {
@@ -21,7 +23,7 @@ export default function Products() {
                     Hello, <b>{session?.user?.name}</b>
                 </h2>
                 <div className="flex  gap-1 text-black rounded-lg overflow-hidden">
-                    <img src={session?.user?.image} alt="" className="w-6 h-6" />
+                    {imageUrl ? <Image width={20} height={20} src={imageUrl} alt="profile" className="w-6 h-6" /> : ""}
                     <span className="px-2">{session?.user?.name}</span>
                 </div>
             </div>
