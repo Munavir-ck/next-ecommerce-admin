@@ -10,17 +10,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         return (
             <div className="bg-bgGray w-screen h-screen flex items-center">
                 <div className="text-center w-full">
-                    <button onClick={() => signIn("google")} className="bg-white p-2 px-4 rounded-lg">
-                        Login with Google
-                    </button>
+                    <div className="flex items-center justify-center h-screen dark:bg-gray-800">
+                        <button
+                            onClick={() => signIn("google")}
+                            className="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+                        >
+                            <img
+                                className="w-6 h-6"
+                                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                                loading="lazy"
+                                alt="google logo"
+                            />
+                            <span>Login with Google</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="bg-bgGray min-h-screen ">
-            <div className="block md:hidden flex items-center p-4">
+        <div className="bg-stone-300 min-h-screen ">
+            <div className="block md:hidden flex items-center p-4 ">
                 <button onClick={() => setShowNav(true)}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                         <path
@@ -36,7 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div className="flex">
                 <Nav show={showNav} />
-                <div className="flex-grow p-4">{children}</div>
+                <div className="flex-grow p-4 overflow-hidden min-h-screen ">{children}</div>
             </div>
         </div>
     );
