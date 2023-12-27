@@ -1,11 +1,12 @@
+import ProductForm from "@/components/ProductForm";
 import Layout from "@/components/Layout";
 import {useSession} from "next-auth/react";
-import GoogleButton from 'react-google-button'
 
-export default function Home() {
+export default function NewProduct() {
   const {data: session} = useSession();
-  return <Layout>
-    <div className="text-blue-900 flex justify-between ">
+  return (
+    <Layout>
+        <div className="text-blue-900 flex justify-between ">
       <h2>
         Hello, <b>{session?.user?.name}</b>
       </h2>
@@ -17,8 +18,9 @@ export default function Home() {
       </div>
     
     </div>
-    <div className="bg-bgGray mt-4 h-full shadow-2xl rounded-lg p-5 overflow-scroll">
-      <h1>haaaaaaaaaai</h1>
-    </div>
-  </Layout>
+    <div className="bg-bgGray shadow-2xl  mt-4 rounded-lg h-full p-10">
+      <ProductForm />
+      </div>
+    </Layout>
+  );
 }

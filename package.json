@@ -9,15 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.481.0",
+    "axios": "^1.6.3",
     "dotenv": "^16.3.1",
+    "mime-types": "^2.1.35",
     "mongoose": "^8.0.3",
+    "multiparty": "^4.2.3",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-pro-sidebar": "^1.1.0-alpha.1"
+    "react-pro-sidebar": "^1.1.0-alpha.1",
+    "react-sortablejs": "^6.1.4",
+    "react-spinners": "^0.13.8"
   },
   "devDependencies": {
+    "@types/mime-types": "^2.1.4",
+    "@types/multiparty": "^0.0.36",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
