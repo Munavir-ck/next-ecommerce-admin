@@ -15,7 +15,7 @@ const configENV = {
     PORT: process.env.PORT as string,
     JWT_KEY: process.env.JWT_SECRET as string,
     GOOGLE_SECRET: process.env.GOOGLE_SECRET as string,
-    GOOGLE_ID:process.env.GOOGLE_ID as string
+    GOOGLE_ID: process.env.GOOGLE_ID as string,
 };
 
 export default configENV;
