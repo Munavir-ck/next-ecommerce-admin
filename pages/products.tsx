@@ -37,6 +37,7 @@ export default function Products() {
                         <tr>
                             <td>Product name</td>
                             <td> Product price</td>
+                            <td> Image</td>
                             <td> Action</td>
                         </tr>
                     </thead>
@@ -45,6 +46,8 @@ export default function Products() {
                             <tr key={product?._id}>
                                 <td>{product?.title}</td>
                                 <td>{product?.price}</td>
+                                <td><Image height={50} width={50} src={product?.images
+[0]} alt="" className="rounded-lg" /></td>
                                 <td>
                                     <Link className="btn-default" href={"/products/edit/" + product._id}>
                                         <svg
