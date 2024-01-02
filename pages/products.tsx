@@ -5,8 +5,16 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
+interface Product {
+  _id: number;
+  title: string;
+  price: number;
+ images: string[];
+  
+}
+
 export default function Products() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const { data: session } = useSession();
     let imageUrl: any = session?.user?.image;
 

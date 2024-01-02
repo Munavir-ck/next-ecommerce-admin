@@ -1,10 +1,29 @@
-import { ChangeEventHandler, FormEvent, useEffect, useState } from "react";
+import { ChangeEventHandler, FormEvent, useEffect, useState,ChangeEvent,FormEventHandler } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Spinner from "@/components/Spinner";
 import { ReactSortable } from "react-sortablejs";
 import Image from "next/image";
 
+
+interface ProductFormProps {
+    _id?: string;
+    title?: string;
+    description?: string|null;
+    price?: number;
+    images?: string[];
+    category?: string;
+    properties?:string[]|null;
+  }
+
+  interface CategoriesProps{
+    _id: string;
+    name: string;
+    properties:any;
+    parent:any
+  }
+ 
+  type ItemInterface = /*unresolved*/ any
 export default function ProductForm({
     _id,
     title: existingTitle,
@@ -13,7 +32,7 @@ export default function ProductForm({
     images: existingImages,
     category: assignedCategory,
     properties: assignedProperties,
-}) {
+}:ProductFormProps) {
     const [title, setTitle] = useState(existingTitle || "");
     const [description, setDescription] = useState(existingDescription || "");
     const [category, setCategory] = useState(assignedCategory || "");
@@ -22,14 +41,14 @@ export default function ProductForm({
     const [images, setImages] = useState(existingImages || []);
     const [goToProducts, setGoToProducts] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState<CategoriesProps[]>([]);
     const router = useRouter();
     useEffect(() => {
         axios.get("/api/categories").then((result) => {
             setCategories(result.data);
         });
     }, []);
-    async function saveProduct(ev: Event) {
+    async function saveProduct(ev: React.FormEvent<HTMLFormElement>) {
         ev.preventDefault();
         const data = {
             title,
@@ -51,8 +70,8 @@ export default function ProductForm({
     if (goToProducts) {
         router.push("/products");
     }
-    async function uploadImages(ev: ChangeEventHandler<HTMLInputElement>) {
-        const files = (ev.target as HTMLInputElement)?.files;
+    async function uploadImages(ev: ChangeEvent<HTMLInputElement>) {
+        const files = ev.target?.files;
         if (files && files?.length > 0) {
             setIsUploading(true);
             const data = new FormData();
@@ -122,7 +141,7 @@ export default function ProductForm({
                 ))}
             <label>Photos</label>
             <div className="mb-2 flex flex-wrap gap-1">
-                <ReactSortable list={images} className="flex flex-wrap gap-1" setList={updateImagesOrder}>
+                <ReactSortable list={images as ItemInterface[]} className="flex flex-wrap gap-1" setList={updateImagesOrder}>
                     {!!images?.length &&
                         images.map((link: string) => (
                             <div key={link} className="h-24 bg-white p-4 shadow-sm rounded-sm border border-gray-200">
