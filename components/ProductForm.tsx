@@ -145,7 +145,7 @@ export default function ProductForm({
                     {!!images?.length &&
                         images.map((link: string) => (
                             <div key={link} className="h-24 bg-white p-4 shadow-sm rounded-sm border border-gray-200">
-                                <Image height={200} width={200} src={link} alt="" className="rounded-lg" />
+                                <Image height={200} width={100} src={link} alt="" className="rounded-lg" />
                             </div>
                         ))}
                 </ReactSortable>
