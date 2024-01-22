@@ -9,9 +9,10 @@ import Swal from "sweetalert2";
 type Category = {
     _id?: string;
     name: string;
-    parent: { name: string; _id: string | any } | any;
+    parent?: { name: string; _id: string | any } | any;
     properties: any[];
-    // Add other properties as needed
+  
+    
 };
 type Property = {
     name: string;
@@ -37,7 +38,7 @@ const Index: React.FC = () => {
     }
     async function saveCategory(ev: any) {
         ev.preventDefault();
-        const data = {
+        const data:Category = {
             name,
             parentCategory,
             properties: properties.map((p) => ({
